@@ -1,66 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+{% extends 'layout.html' %}
 
-        header {
-            background-color: #3498db;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-        }
+{% block content %}
+    <header>
+        <h1>Password Generator</h1>
+    </header>
 
-        section {
-            margin: 2em;
-        }
-
-        h1 {
-            color: #3498db;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            background-color: #3498db;
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: #2980b9;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>Password Generator</h1>
-</header>
-
-<section>
-    <p>Welcome to the Password Generator website! Use the buttons below to generate and check the strength of passwords.</p>
-    <a class="button" href="{{ url_for('generate_password_route') }}">Generate Password</a>
-    <a class="button" href="{{ url_for('check_strength') }}">Check Password Strength</a>
-</section>
-    <div>
-        <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
-        <!-- Add the registration button -->
-        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
-    </div>
-</body>
-</html>
+    <section>
+        <p>Welcome to the Password Generator website! Use the buttons below to generate and check the strength of passwords.</p>
+        <!--<a class="button" href="{{ url_for('generate_password_route') }}">Generate Password</a>-->
+        <!--<a class="button" href="{{ url_for('password_strength_route') }}">Check Password Strength</a>-->
+    </section>
+{% endblock %}
 
