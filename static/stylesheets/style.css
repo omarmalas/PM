@@ -1,96 +1,51 @@
-*{margin: 0;
+body {
+    background-color: #000;
+    color: #0f0;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0rem;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "1"sans-serif ;
 }
 
-body{
-
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-background: url(image.jpg) no-repeat;
-background-position: center;
-background-size: cover;
-}
-.O {
-  width: 420px;
-  background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
-  backdrop-filter: blur(50px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 30px 40px;
-  border-radius: 10px;
-}
-
-
-.O h1{
-    font-size:36px ;
+.navbar {
+    background-color: #111;
+    padding: 10px;
     text-align: center;
-
 }
 
-.O .input-box{
-    position: relative;
-    width: 100%;
-    height: 50px;
-    margin:30px 0;
-    background: transparent;
-}
-
-.input-box input{
-width: 100%;
-height: 100%;
-background: transparent;
-border: none;
-outline: none;
-border: 2px solid rgba(255, 255, 255, .2);
-border-radius: 40px;
-color: #fff;
-font-size: 15px;
-padding: 20px 45px 20px 20px;
-}
-
-.input-box input::placeholder {
-color: #fff;
-}
-
-.input-box i {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 36px;
-    color: black;
-}
-.O .btn
-{   width: 100%;
-    height: 45px;
-    background: #fff;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    cursor: pointer;
+.navbar a {
+    color: #0f0;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 10px;
     font-size: 16px;
-    color: #333;
-    font-weight: 600;
-    margin-top: 20px;
-}
-.O .register-link
-{ font-size: 15;
-  text-align: center;
-  margin: 20px;
-}
-.register-link p a{
-color:#fff;
-text-decoration: none;
-font-weight: 600;
 }
 
-.register-link p a:hover{
-    text-decoration: underline;
+.navbar a:hover {
+    border-bottom: 2px solid #0f0;
+}
 
+.content {
+    padding: 20px;
+}
+
+.login-logout {
+    text-align: right;
+    padding: 10px;
+}
+
+.login-logout form {
+    display: inline-block;
+}
+
+.login-logout button {
+    background-color: #111;
+    color: #0f0;
+    border: none;
+    padding: 8px 12px; /* Adjusted padding for consistency */
+    cursor: pointer;
+}
+
+.login-logout button:hover {
+    background-color: #0f0;
+    color: #000;
 }
