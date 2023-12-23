@@ -26,8 +26,10 @@
     <div class="quick-links-section">
         <h2>Quick Links:</h2>
         <ul class="quick-links-list">
+            {% if not current_user.is_authenticated %}
             <li><a class="quick-link" href="/register">Register</a></li>
             <li><a class="quick-link" href="/login">Login</a></li>
+            {% endif %}
             {% if current_user.is_authenticated %}
             <li><a class="quick-link" href="{{ url_for('dashboard', user_id=current_user.id) }}">User Dashboard</a></li>
             {% endif %}
