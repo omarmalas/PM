@@ -65,6 +65,33 @@ body {
     padding: 20px;
 }
 
+.form-group {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0f0;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #0f0;
+    border-radius: 4px;
+    color: #000;
+    background-color: #111;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
+}
+
+form input:focus {
+    border-color: #0f0;
+}
+
+/*index*/
+
 .welcome-section {
     text-align: center;
     margin-bottom: 20px;
@@ -97,7 +124,7 @@ body {
 .quick-link:hover {
     border-color: #0f0;
 }
-
+/*Generate Password*/
 
 .password-generator-section {
     text-align: center;
@@ -169,6 +196,112 @@ body {
 }
 
 #copyToClipboardButton:hover {
+    background-color: #0f0;
+    color: #000;
+}
+/* Password Strength*/
+
+.result-section {
+    margin-top: 20px;
+}
+
+#strengthResult,
+#strengthMessage {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#checkStrengthButton {
+    background-color: #111;
+    color: #0f0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#checkStrengthButton:hover {
+    background-color: #0f0;
+    color: #000;
+}
+/* Dashboard */
+
+.password-list {
+    list-style: none;
+    padding: 0;
+}
+
+.password-list li {
+    margin-bottom: 10px;
+}
+
+#addPasswordForm {
+    margin-top: 20px;
+}
+
+#addPasswordButton {
+    background-color: #111;
+    color: #0f0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#addPasswordButton:hover {
+    background-color: #0f0;
+    color: #000;
+}
+
+/* Hash */
+
+.error-message {
+    color: red;
+}
+
+.result-message {
+    color: #0f0;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0f0;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #0f0;
+    border-radius: 4px;
+    color: #0f0; /* Set text color to green (#0f0) */
+    background-color: #111;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
+}
+
+form input:focus {
+    border-color: #0f0;
+}
+
+form button {
+    background-color: #111;
+    color: #0f0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+form button:hover {
     background-color: #0f0;
     color: #000;
 }
