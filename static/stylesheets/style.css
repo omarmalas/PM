@@ -2,7 +2,7 @@ body {
     background-color: #000;
     color: #0f0;
     font-family: 'Courier New', Courier, monospace;
-    margin: 0rem;
+    margin: 0;
     padding: 0;
 }
 
@@ -18,14 +18,14 @@ body {
     padding: 10px;
     margin: 0 10px;
     font-size: 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out;
+    display: inline-block;
 }
 
 .navbar a:hover {
-    border-bottom: 2px solid #0f0;
-}
-
-.content {
-    padding: 20px;
+    border-color: #0f0;
 }
 
 .login-logout {
@@ -33,19 +33,142 @@ body {
     padding: 10px;
 }
 
+.login-logout p {
+    margin: 0;
+    display: inline-block;
+    color: #0f0;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
 .login-logout form {
     display: inline-block;
+    margin-right: 10px;
 }
 
 .login-logout button {
     background-color: #111;
     color: #0f0;
     border: none;
-    padding: 8px 12px; /* Adjusted padding for consistency */
+    padding: 8px 12px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .login-logout button:hover {
+    background-color: #0f0;
+    color: #000;
+}
+
+.content {
+    padding: 20px;
+}
+
+.welcome-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.features-section,
+.quick-links-section {
+    margin-bottom: 40px;
+}
+
+.feature-list,
+.quick-links-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.feature-link,
+.quick-link {
+    color: #0f0;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out;
+    padding: 8px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.feature-link:hover,
+.quick-link:hover {
+    border-color: #0f0;
+}
+
+
+.password-generator-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.password-form {
+    margin-top: 20px;
+}
+
+.label {
+    color: #0f0;
+    margin-right: 10px;
+}
+
+.input {
+    padding: 8px;
+}
+
+.generate-button {
+    background-color: #111;
+    color: #0f0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.generate-button:hover {
+    background-color: #0f0;
+    color: #000;
+}
+
+.generated-password-section {
+    margin-top: 20px;
+}
+
+.generated-password {
+    color: #0f0;
+    display: inline-block;
+    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.generated-password:hover {
+    border-color: #0f0;
+}
+.generated-password-section {
+    margin-top: 20px;
+}
+
+.generated-password {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#copyToClipboardButton {
+    background-color: #111;
+    color: #0f0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#copyToClipboardButton:hover {
     background-color: #0f0;
     color: #000;
 }
