@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+    <h1>Hash Cracker - Result</h1>
+
+    <form method="post" action="/process">
+        <label for="user_hash">Enter Hash:</label>
+        <input type="text" name="user_hash" required>
+        <button type="submit">Crack</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+        <p>{{ result }}</p>
+        <p>Hash Type: {{ hash_type }}</p>
+    {% endif %}
+{% endblock %}
