@@ -1,14 +1,36 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <header>
-        <h1>Password Generator</h1>
-    </header>
+    <div class="welcome-section">
+        <h1>Welcome to the Password Manager</h1>
+        <p>
+            Securely manage your passwords with our Password Manager web application.
+            This application provides features for user registration, login, password generation,
+            password strength checking, user dashboards, and a hash cracker tool.
+        </p>
+    </div>
 
-    <section>
-        <p>Welcome to the Password Generator website! Use the buttons below to generate and check the strength of passwords.</p>
-        <!--<a class="button" href="{{ url_for('generate_password_route') }}">Generate Password</a>-->
-        <!--<a class="button" href="{{ url_for('password_strength_route') }}">Check Password Strength</a>-->
-    </section>
+    <div class="features-section">
+        <h2>Features:</h2>
+        <ul class="feature-list">
+            <li><a class="feature-link" href="/register">Register</a> - Create an account to start managing your passwords.</li>
+            <li><a class="feature-link" href="/login">Login</a> - Log in to your account securely.</li>
+            <li><a class="feature-link" href="/generate_password">Generate Password</a> - Create strong and secure passwords.</li>
+            <li><a class="feature-link" href="/password_strength">Check Password Strength</a> - Evaluate the strength of your passwords.</li>
+            <li><a class="feature-link" href="/dashboard/{{ user_id }}">User Dashboard</a> - Manage your saved passwords.</li>
+            <li><a class="feature-link" href="/logout">Logout</a> - Log out of your account.</li>
+            <li><a class="feature-link" href="/process">Hash Cracker</a> - Identify and crack password hashes.</li>
+        </ul>
+    </div>
+
+    <div class="quick-links-section">
+        <h2>Quick Links:</h2>
+        <ul class="quick-links-list">
+            <li><a class="quick-link" href="/register">Register</a></li>
+            <li><a class="quick-link" href="/login">Login</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a class="quick-link" href="{{ url_for('dashboard', user_id=current_user.id) }}">User Dashboard</a></li>
+            {% endif %}
+        </ul>
+    </div>
 {% endblock %}
-
