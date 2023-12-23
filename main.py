@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import secrets
-# used for generating cryptographically strong random numbers suitable for managing data such as passwords,
-# account authentication, security tokens, and related secrets.
 import string
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt, check_password_hash
@@ -9,29 +7,37 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = '5f5b2ec60d42939b0e5b78e2d3ecb0b49b22977ff7f516b83459397bcbde2af1'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
-app.config['SECRET_KEY'] = secrets.token_hex(16) # Generates a 32-character random hexadecimal string to be used as secret key for the session to stop tampering
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column(db.String(120), nullable=False)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    passwords = db.relationship('PasswordEntry', backref='user', lazy=True)
+
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-# https://github.com/yanalabuseini/hexxus/tree/main
+class PasswordEntry(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    service = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -50,16 +56,17 @@ def register():
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
         # Create a new user with the hashed password
-        new_user = User(username=username, password_hash=hashed_password)
+        new_user = User(username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
         # Log in the newly registered user
         login_user(new_user)
 
-        return redirect(url_for('password_strength_route'))
+        return redirect(url_for('index'))
 
     return render_template('register.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -72,7 +79,7 @@ def login():
 
         user = User.query.filter_by(username=username).first()
 
-        if user and bcrypt.check_password_hash(user.password_hash, password):
+        if user and bcrypt.check_password_hash(user.password, password):  # Fix here: 'password_hash' to 'password'
             login_user(user)
             return redirect(url_for('password_strength_route'))
         else:
@@ -80,11 +87,13 @@ def login():
 
     return render_template('login.html')
 
+
 @app.route('/logout', methods=['POST'])
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
 
 def generate_password(length=12):
     characters = string.ascii_letters + string.digits + string.punctuation
@@ -101,11 +110,12 @@ def generate_password_route():
             generated_password = generate_password(password_length)
             return render_template('generate_password.html', generated_password=generated_password)
         except ValueError:
-            return render_template('generate_password.html', error="Invalid input. Please enter a valid number for password length.")
+            return render_template('generate_password.html',
+                                   error="Invalid input. Please enter a valid number for password length.")
     return render_template('generate_password.html')
 
-def check_password_strength(password):
 
+def check_password_strength(password):
     # Check if the password has at least 10 characters
     if len(password) < 10:
         return 'Weak'
@@ -130,6 +140,7 @@ def check_password_strength(password):
     # If the password passes the above checks, consider it strong
     return 'Strong'
 
+
 def get_strength_message(strength):
     if strength == 'Weak':
         return 'Password is too short. Please use at least 10 characters.'
@@ -139,6 +150,7 @@ def get_strength_message(strength):
         return 'Strong password! Good job!'
     else:
         return 'Invalid password strength.'
+
 
 @app.route('/password_strength', methods=['GET', 'POST'])
 @login_required
@@ -160,6 +172,37 @@ def password_strength_route():
         return jsonify({'strength': strength, 'message': message})
 
     return render_template('password_strength.html')
+
+
+@app.route('/dashboard/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def dashboard(user_id):
+    user = User.query.get_or_404(user_id)
+
+    if request.method == 'POST':
+        service = request.form['service']
+        password = request.form['password']
+        new_entry = PasswordEntry(service=service, password=password, user=user)
+        db.session.add(new_entry)
+        db.session.commit()
+
+    entries = PasswordEntry.query.filter_by(user=user).all()
+    return render_template('dashboard.html', user=user, entries=entries)
+
+
+@app.route('/remove_password/<int:user_id>/<int:entry_id>')
+@login_required
+def remove_password(user_id, entry_id):
+    user = User.query.get_or_404(user_id)
+    entry = PasswordEntry.query.get_or_404(entry_id)
+
+    if entry.user != user:
+        return redirect(url_for('dashboard', user_id=user.id))
+
+    db.session.delete(entry)
+    db.session.commit()
+    return redirect(url_for('dashboard', user_id=user.id))
+
 
 if __name__ == '__main__':
     with app.app_context():
