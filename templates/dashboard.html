@@ -5,20 +5,33 @@
 {% block content %}
     <h1>Welcome, {{ user.username }}!</h1>
     <h2>Your Passwords</h2>
-    <ul>
+    <ul class="password-list">
         {% for entry in entries %}
-            <li>{{ entry.service }}: {{ entry.password }}
+            <li>
+                {{ entry.service }}: {{ entry.password }}
                 <a href="{{ url_for('remove_password', user_id=user.id, entry_id=entry.id) }}">Remove</a>
             </li>
         {% endfor %}
     </ul>
     <h2>Add New Password</h2>
 
-    <form method="POST" action="{{ url_for('dashboard', user_id=user.id) }}">
+    <form id="addPasswordForm" method="POST" action="{{ url_for('dashboard', user_id=user.id) }}">
         <label for="service">Service:</label>
         <input type="text" id="service" name="service" required><br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required><br>
-        <button type="submit">Add Password</button>
+        <button type="submit" id="addPasswordButton">Add Password</button>
     </form>
+
+    <script>
+        const addPasswordForm = document.getElementById('addPasswordForm');
+        const addPasswordButton = document.getElementById('addPasswordButton');
+
+        addPasswordButton.addEventListener('click', () => {
+            // Add loading state or any other actions before form submission
+            addPasswordButton.disabled = true;
+            addPasswordButton.innerText = 'Adding...';
+            addPasswordForm.submit();
+        });
+    </script>
 {% endblock %}
