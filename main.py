@@ -4,6 +4,12 @@ import string
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from passlib.hash import bcrypt
+from termcolor import cprint
+from pwn import *
+import time
+
+valid = []
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -20,6 +26,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     passwords = db.relationship('PasswordEntry', backref='user', lazy=True)
+
+
 
 
 @login_manager.user_loader
@@ -115,41 +123,52 @@ def generate_password_route():
     return render_template('generate_password.html')
 
 
+import string
+
 def check_password_strength(password):
-    # Check if the password has at least 10 characters
-    if len(password) < 10:
-        return 'Weak'
+    # Check if the password has at least 12 characters
+    if len(password) < 12:
+        return 'Very Weak'
 
     # Check if the password contains both uppercase and lowercase characters
-    if not any(c.isupper() for c in password) or not any(c.islower() for c in password):
+    if not any(c.isupper() and c.islower() for c in password):
         return 'Weak'
 
-    # Check if the password contains at least one digit
-    if not any(c.isdigit() for c in password):
+    # Check if the password contains at least two digits
+    if sum(c.isdigit() for c in password) < 2:
         return 'Moderate'
 
-    # Check if the password contains at least one symbol
+    # Check if the password contains at least one special character
     if not any(c in string.punctuation for c in password):
         return 'Moderate'
 
-    # Check if no more than two characters are in a row
-    consecutive_chars = sum(1 for i, j in zip(password, password[1:]) if ord(j) - ord(i) == 1)
-    if consecutive_chars < 2:
+    # Check if no more than three characters are in a row
+    consecutive_chars = sum(1 for i, j, k in zip(password, password[1:], password[2:]) if ord(j) - ord(i) == ord(k) - ord(j) == 1)
+    if consecutive_chars > 3:
+        return 'Moderate'
+
+    # Check if the password contains a mix of letters, digits, and special characters
+    if not (any(c.isalpha() for c in password) and any(c.isdigit() for c in password) and any(c in string.punctuation for c in password)):
         return 'Moderate'
 
     # If the password passes the above checks, consider it strong
     return 'Strong'
 
 
+
 def get_strength_message(strength):
-    if strength == 'Weak':
-        return 'Password is too short. Please use at least 10 characters.'
+    if strength == 'Very Weak':
+        return 'Your password is categorized as very weak. It is highly recommended to improve its security by increasing its length to at least 12 characters.'
+    elif strength == 'Weak':
+        return 'Your password is categorized as weak. This classification is due to the relatively short length and absence of diverse character types. To enhance its strength, consider increasing the length to at least 12 characters and incorporating a mix of uppercase and lowercase letters, along with digits.'
     elif strength == 'Moderate':
-        return 'Password could be stronger. Consider using a mix of uppercase, lowercase, digits, symbols, and avoiding consecutive characters.'
+        return 'Your password is assessed as moderate in strength. The recommendations for improvement include increasing its length, using a combination of uppercase and lowercase letters, incorporating digits, symbols, and avoiding consecutive characters. Additionally, consider including a mix of letters, digits, and special characters for added security.'
     elif strength == 'Strong':
-        return 'Strong password! Good job!'
+        return 'Congratulations! Your password is classified as strong. It meets the recommended criteria for a secure password, including a sufficient length and a diverse combination of character types.'
     else:
-        return 'Invalid password strength.'
+        return 'The provided password strength is invalid. Please check your input.'
+
+
 
 
 @app.route('/password_strength', methods=['GET', 'POST'])
@@ -202,6 +221,75 @@ def remove_password(user_id, entry_id):
     db.session.delete(entry)
     db.session.commit()
     return redirect(url_for('dashboard', user_id=user.id))
+
+def identify_hash(hash_input):
+    # Function to identify the hash type
+    hash_algorithms = {
+        32: 'md5',
+        40: 'sha1',
+        56: 'sha224',
+        64: 'sha256',
+        96: 'sha384',
+        128: 'sha512',
+        28: 'ripemd160',
+        128: 'whirlpool',
+        60: 'sha3_224',
+        96: 'sha3_384',
+        128: 'sha3_512',
+        60: 'blake2b',
+        128: 'blake2s',
+        60: 'shake_128',
+        100: 'shake_256',
+        # Add more hash algorithms as needed
+    }
+
+    # Check for bcrypt
+    if hash_input.startswith('$2a$') or hash_input.startswith('$2b$'):
+        return 'bcrypt'
+
+    hash_length = len(hash_input)
+
+    if hash_length in hash_algorithms:
+        return hash_algorithms[hash_length]
+    else:
+        return None
+
+def crack_hash(hash_input, hash_type):
+    # Function to attempt to crack the hash using a dictionary attack
+    password_file = '/usr/share/wordlists/rockyou.txt'  # Replace with a real-world password list
+
+    with open(password_file, 'r') as file:
+        for password in file:
+            password = password.strip()
+
+            if hash_type == 'bcrypt':
+                hashed_password = bcrypt.hashpw(password.encode(), hash_input.encode())
+            else:
+                hashed_password = hashlib.new(hash_type, password.encode()).hexdigest()
+
+            if hashed_password == hash_input:
+                return f"Password found: {password}"
+
+    return "Password not found"
+
+
+
+@app.route('/process', methods=['GET', 'POST'])
+@login_required
+def process():
+    if request.method == 'POST':
+        user_hash = request.form['user_hash']
+        hash_type = identify_hash(user_hash)
+
+        if hash_type:
+            result = crack_hash(user_hash, hash_type)
+            return render_template('result.html', result=result, hash_type=hash_type, error=None)
+        else:
+            return render_template('result.html', result=None, hash_type=None, error="Invalid hash input.")
+
+    # If the request method is GET, render the form without processing
+    return render_template('result.html', result=None, hash_type=None, error=None)
+
 
 
 if __name__ == '__main__':
