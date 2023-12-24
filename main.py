@@ -127,7 +127,8 @@ def check_password_strength(password):
     # Check if the password has at least 12 characters
     if len(password) < 10:
         return 'Very Weak'
-
+    elif:
+        return 'Osama'
     # Check if the password contains both uppercase and lowercase characters
     if not any(c.isupper() for c in password):
         return 'Weak'
