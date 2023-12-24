@@ -123,15 +123,16 @@ def generate_password_route():
     return render_template('generate_password.html')
 
 
-import string
-
 def check_password_strength(password):
     # Check if the password has at least 12 characters
     if len(password) < 12:
         return 'Very Weak'
 
     # Check if the password contains both uppercase and lowercase characters
-    if not any(c.isupper() and c.islower() for c in password):
+    if not any(c.isupper() for c in password):
+        return 'Weak'
+
+    if not any(c.islower() for c in password):
         return 'Weak'
 
     # Check if the password contains at least two digits
