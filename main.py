@@ -125,7 +125,7 @@ def generate_password_route():
 
 def check_password_strength(password):
     # Check if the password has at least 12 characters
-    if len(password) < 12:
+    if len(password) < 10:
         return 'Very Weak'
 
     # Check if the password contains both uppercase and lowercase characters
@@ -136,7 +136,7 @@ def check_password_strength(password):
         return 'Weak'
 
     # Check if the password contains at least two digits
-    if sum(c.isdigit() for c in password) < 2:
+    if sum(c.isdigit() for c in password) > 2:
         return 'Moderate'
 
     # Check if the password contains at least one special character
