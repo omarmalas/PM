@@ -129,18 +129,18 @@ def check_password_strength(password):
         return 'Very Weak'
 
     # Check if the password contains both uppercase and lowercase characters
-    if not any(c.isupper() for c in password):
+    elif not any(c.isupper() for c in password):
         return 'Weak'
 
-    if not any(c.islower() for c in password):
+    elif not any(c.islower() for c in password):
         return 'Weak'
 
     # Check if the password contains at least two digits
-    if sum(c.isdigit() for c in password) > 2:
+    elif sum(c.isdigit() for c in password) > 2:
         return 'Moderate'
 
     # Check if the password contains at least one special character
-    if not any(c in string.punctuation for c in password):
+    elif not any(c in string.punctuation for c in password):
         return 'Moderate'
 
     # Check if no more than three characters are in a row
@@ -149,7 +149,7 @@ def check_password_strength(password):
         return 'Moderate'
 
     # Check if the password contains a mix of letters, digits, and special characters
-    if not (any(c.isalpha() for c in password) and any(c.isdigit() for c in password) and any(c in string.punctuation for c in password)):
+    elif not (any(c.isalpha() for c in password) and any(c.isdigit() for c in password) and any(c in string.punctuation for c in password)):
         return 'Moderate'
 
     # If the password passes the above checks, consider it strong
