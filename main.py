@@ -108,6 +108,9 @@ def generate_password(length=12):
     password = ''.join(secrets.choice(characters) for _ in range(length))
     return password
 
+def generate_strong_passwords(): #for suggesting strong passwords in password_strength route.
+    strong_passwords = [generate_password(12) for _ in range(3)]
+    return strong_passwords
 
 @app.route('/generate_password', methods=['GET', 'POST'])
 @login_required
@@ -189,7 +192,15 @@ def password_strength_route():
         # Add a message based on the password strength
         message = get_strength_message(strength)
 
-        return jsonify({'strength': strength, 'message': message})
+        # Generate strong password suggestions if the entered password is weak or very weak
+        strong_passwords = []
+        if strength in ['Weak', 'Very Weak']:
+            strong_passwords = generate_strong_passwords()
+
+        # Store strong passwords in session for later use
+        session['strong_passwords'] = strong_passwords
+
+        return render_template('password_strength.html', strength=strength, message=message, strong_passwords=strong_passwords)
 
     return render_template('password_strength.html')
 
