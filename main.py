@@ -153,7 +153,7 @@ def check_password_strength(password):
 
     # Check if the password contains a mix of letters, digits, and special characters
     elif not (any(c.isalpha() for c in password) and any(c.isdigit() for c in password) and any(c in string.punctuation for c in password)):
-        return 'Moderate'
+        return 'Strong'
 
     # If the password passes the above checks, consider it strong
     return 'Strong'
