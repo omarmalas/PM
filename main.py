@@ -6,7 +6,6 @@ from flask_bcrypt import Bcrypt, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from passlib.hash import bcrypt
 from termcolor import cprint
-from pwn import *
 import time
 
 valid = []
