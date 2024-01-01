@@ -14,7 +14,7 @@
         <a href="{{ url_for('generate_password_route') }}">Generate Password</a>
         <a href="{{ url_for('password_strength_route') }}">Password Strength</a>
         {% if current_user.is_authenticated %}
-            <a href="{{ url_for('dashboard', user_id=current_user.id) }}">Dashboard</a>
+            <a href="{{ url_for('dashboard', user_id=current_user.id) }}">Password Safe</a>
             <a href="{{ url_for('process') }}">Hash Cracking</a>
         {% endif %}
         <!-- Add more navbar links as needed -->
