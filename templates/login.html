@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-        <div class="O">
+        <center><div class="O">
             <form action="/login" method="post">
                     <h1>login</h1>
                         {% if error %}
@@ -25,4 +25,6 @@
                 <div class="register-link">
                     <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
                 </div>
+            </div>
+        </center>
 {% endblock %}
