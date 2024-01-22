@@ -315,8 +315,14 @@ box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 color: #fff;
 padding: 30px 40px ;
 border-radius: 10px;
-
-
+position: center
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+background: url(1.png) no-repeat;
+background-position: center;
+background-size: cover;
 
 
 }
