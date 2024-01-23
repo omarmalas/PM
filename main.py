@@ -267,7 +267,7 @@ def identify_hash(hash_input):
 
 def crack_hash(hash_input, hash_type):
     # Function to attempt to crack the hash using a dictionary attack
-    password_file = '/usr/share/wordlists/rockyou.txt'  # Replace with a real-world password list
+    password_file = '/root/PM/rockyou.txt'
 
     with open(password_file, 'r') as file:
         for password in file:
