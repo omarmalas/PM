@@ -279,17 +279,16 @@ result-section {
 
 .m{
     text-align: right;
-    backdrop-filter: blur(10px);
     border: 1px;
 }
 
 .m a{
-    backdrop-filter: blur(10px);
     border: 1px;
+    text-align: right;
 }
 .m a:hover{
     background-color: #0f0; 
-    color: #000; 
+    color: #666; 
     border-color: #0f0; 
     
 }
