@@ -248,6 +248,17 @@ result-section {
 }
 /* Dashboard */
 
+.remove_password{
+    background-color: #111;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Add border-color transition */
+    transition: border-color 0.3s ease-in-out;
+    display: inline-block;
+    
+}
+
 .password-list {
     list-style: none;
     padding: 0;
