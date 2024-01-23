@@ -260,7 +260,7 @@ result-section {
 
 .password-list li a {
     border: 1px solid #0f0;
-    padding: 8px;
+    padding: 6px; /* Adjust size */
     text-decoration: none;
     color: #0f0;
     display: inline-block;
