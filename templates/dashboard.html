@@ -10,7 +10,9 @@
         {% for entry in entries %}
             <li>
                 {{ entry.service }}: {{ entry.password }}
+                <div class="login-logout"> 
                 <a href="{{ url_for('remove_password', user_id=user.id, entry_id=entry.id) }}">Remove</a>
+                </div>
             </li>
         {% endfor %}
     </ul>
