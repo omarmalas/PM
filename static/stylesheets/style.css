@@ -279,16 +279,12 @@ result-section {
 
 .m{
     text-align: right;
-    position: fixed;
-    padding: 10px;
     backdrop-filter: blur(10px);
     border: 2px;
     
 }
 
 .m a{
-    padding: 10px;
-    right: 10px;
     backdrop-filter: blur(10px);
     border: 2px;
 }
