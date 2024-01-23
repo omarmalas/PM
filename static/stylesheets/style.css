@@ -71,6 +71,7 @@ body {
     transition: border-color 0.3s ease-in-out;
     display: inline-block;
     backdrop-filter: blur(10px);
+    border: 2px;
 }
 
 .login-logout button:hover {
@@ -87,6 +88,8 @@ body {
     border-radius: 4px;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
     display: inline-block;
+    border: 2px
+    backdrop-filter: blur(10px);
 }
 
 .login-logout a:hover {
