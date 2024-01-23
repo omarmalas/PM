@@ -67,12 +67,13 @@ body {
     padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Add border-color transition */
 }
 
 .login-logout button:hover {
     background-color: #0f0;
     color: #000;
+    border-color: #0f0; /* Add border-color change on hover */
 }
 
 
