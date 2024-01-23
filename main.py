@@ -7,6 +7,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from passlib.hash import bcrypt
 from termcolor import cprint
 import time
+import hashlib
 
 valid = []
 
