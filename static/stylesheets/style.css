@@ -285,6 +285,7 @@ result-section {
 .m a{
     border: 1px;
     text-align: right;
+    margin-bottom: 10px;
 }
 .m a:hover{
     background-color: #0f0; 
