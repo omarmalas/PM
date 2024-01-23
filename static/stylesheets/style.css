@@ -322,6 +322,7 @@ form button:hover {
     padding: 30px 40px;
     border-radius: 10px;
     text-align: center; /* Center text horizontally */
+    padding-left: 50%;
 }
 
 .O h1 {
