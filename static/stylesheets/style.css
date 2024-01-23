@@ -19,6 +19,8 @@ body {
     padding: 10px;
     text-align: center;
     position: center;
+    width: 100%;
+    padding-left: 0%;
 }
 
 .navbar a {
