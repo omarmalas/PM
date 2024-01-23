@@ -256,7 +256,7 @@ result-section {
 
 .password-list li {
     margin-top: 20px;
-    font
+    font-size: 20px;
 }
 
 .password-list li a {
@@ -276,7 +276,6 @@ result-section {
 
 #addPasswordForm {
     margin-top: 20px;
-    font-size: 20px;
 }
 
 #addPasswordButton {
