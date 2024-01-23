@@ -4,11 +4,10 @@ body {
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
-    position: center
+    position: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     background: url(1.png) no-repeat;
     background-position: center;
     background-size: cover;
