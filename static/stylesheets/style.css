@@ -41,7 +41,10 @@ body {
 
 .login-logout {
     text-align: right;
+    top: 0;
+    position: fixed;
     padding: 10px;
+    padding-left: 90%;
 }
 
 .login-logout p {
