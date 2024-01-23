@@ -281,8 +281,6 @@ result-section {
     text-align: right;
     backdrop-filter: blur(10px);
     border: 2px;
-    padding: 10px;
-    boarder-radius: 5px;
 }
 
 .m a{
