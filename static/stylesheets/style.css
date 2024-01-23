@@ -4,23 +4,23 @@ body {
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
-    position: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
     background: url(1.png) no-repeat;
     background-position: center;
     background-size: cover;
-    
 }
 
 .navbar {
     background-color: #111;
     padding: 10px;
     text-align: center;
-    position: center;
+    position: fixed; /* Set position to fixed */
     width: 100%;
-    padding-left: 0%;
+    top: 0; /* Position navbar at the top */
+    z-index: 1000; /* Set a higher z-index to ensure it's above other content */
 }
 
 .navbar a {
