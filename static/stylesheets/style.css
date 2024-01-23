@@ -137,33 +137,6 @@ form input:focus {
     text-align: center; /* Center text horizontally */
 }
 
-.features-section,
-.quick-links-section {
-    margin-bottom: 40px;
-}
-
-.feature-list,
-.quick-links-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.feature-link,
-.quick-link {
-    color: #0f0;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: border-color 0.3s ease-in-out;
-    padding: 8px;
-    display: inline-block;
-    margin: 5px;
-}
-
-.feature-link:hover,
-.quick-link:hover {
-    border-color: #0f0;
-}
 /*Generate Password*/
 
 .password-generator-section {
