@@ -270,7 +270,7 @@ def crack_hash(hash_input, hash_type):
     # Function to attempt to crack the hash using a dictionary attack
     password_file = '/root/PM/rockyou.txt'
 
-    with open(password_file, 'r') as file:
+    with open(password_file, 'r', encoding='latin-1') as file:
         for password in file:
             password = password.strip()
 
