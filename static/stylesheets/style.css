@@ -45,6 +45,7 @@ body {
     position: fixed;
     padding: 10px;
     padding-left: 90%;
+    z-index: 1000;
 }
 
 .login-logout p {
