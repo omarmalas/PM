@@ -277,13 +277,21 @@ result-section {
     color: #000;
 }
 
-.m{
+.m {
     color: #fff;
     text-decoration: none;
+    padding: 8px 12px;
     border: 1px solid transparent;
     border-radius: 4px;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
     display: inline-block;
+
+}
+.m.hover{
+    background-color: #0f0; 
+    color: #000; 
+    border-color: #0f0; 
+    
 }
 
 /* Hash */
