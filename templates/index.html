@@ -10,29 +10,5 @@
         </p>
     </div>
 
-    <div class="features-section">
-        <h2>Features:</h2>
-        <ul class="feature-list">
-            <li><a class="feature-link" href="/register">Register</a> - Create an account to start managing your passwords.</li>
-            <li><a class="feature-link" href="/login">Login</a> - Log in to your account securely.</li>
-            <li><a class="feature-link" href="/generate_password">Generate Password</a> - Create strong and secure passwords.</li>
-            <li><a class="feature-link" href="/password_strength">Check Password Strength</a> - Evaluate the strength of your passwords.</li>
-            <li><a class="feature-link" href="/dashboard/{{ user_id }}">User Dashboard</a> - Manage your saved passwords.</li>
-            <li><a class="feature-link" href="/logout">Logout</a> - Log out of your account.</li>
-            <li><a class="feature-link" href="/process">Hash Cracker</a> - Identify and crack password hashes.</li>
-        </ul>
-    </div>
 
-    <div class="quick-links-section">
-        <h2>Quick Links:</h2>
-        <ul class="quick-links-list">
-            {% if not current_user.is_authenticated %}
-            <li><a class="quick-link" href="/register">Register</a></li>
-            <li><a class="quick-link" href="/login">Login</a></li>
-            {% endif %}
-            {% if current_user.is_authenticated %}
-            <li><a class="quick-link" href="{{ url_for('dashboard', user_id=current_user.id) }}">User Dashboard</a></li>
-            {% endif %}
-        </ul>
-    </div>
 {% endblock %}
