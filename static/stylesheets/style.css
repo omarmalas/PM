@@ -222,17 +222,8 @@ form input:focus {
 }
 /* Password Strength*/
 
-.result-section {
+result-section {
     margin-top: 20px;
-    width: 420px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    color: #fff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    text-align: center; /* Center text horizontally */
 }
 
 #strengthResult,
