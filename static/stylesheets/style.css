@@ -13,6 +13,19 @@ body {
     background-size: cover;
 }
 
+.container {
+    background-color: rgba(0, 0, 0, 0.8); /* Adjust the alpha value for the desired transparency */
+    color: #0f0;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    backdrop-filter: blur(10px);
+}
+
 .navbar {
     background-color: #111;
     padding: 10px;
