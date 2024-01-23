@@ -252,13 +252,25 @@ result-section {
 .password-list {
     list-style: none;
     padding: 0;
-    boarder: 5px;
-    boarder-colour: green;
-    margin-top: 20px;
 }
 
 .password-list li {
     margin-top: 20px;
+}
+
+.password-list li a {
+    border: 1px solid #0f0;
+    padding: 8px;
+    text-decoration: none;
+    color: #0f0;
+    display: inline-block;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.password-list li a:hover {
+    background-color: #0f0;
+    color: #000;
+    border-color: #0f0;
 }
 
 #addPasswordForm {
@@ -280,22 +292,6 @@ result-section {
     color: #000;
 }
 
-.m{
-    text-align: right;
-    border: 1px;
-}
-
-.m a{
-    border: 1px;
-    text-align: right;
-    margin-bottom: 10px;
-}
-.m a:hover{
-    background-color: #0f0; 
-    color: #666; 
-    border-color: #0f0; 
-    
-}
 
 /* Hash */
 
