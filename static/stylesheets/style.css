@@ -252,11 +252,12 @@ result-section {
 .password-list {
     list-style: none;
     padding: 0;
-    margin-top: 3px;
+    boarder: 5px;
+    boarder-colour: green;
 }
 
 .password-list li {
-    
+    margin-top: 3px;
 }
 
 #addPasswordForm {
