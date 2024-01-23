@@ -3,6 +3,7 @@
 {% block title %}Password Safe{% endblock %}
 
 {% block content %}
+<div class="O">
     <h1>Welcome, {{ user.username }}!</h1>
     <h2>Your Passwords</h2>
     <ul class="password-list">
@@ -34,4 +35,5 @@
             addPasswordForm.submit();
         });
     </script>
+</div>
 {% endblock %}
