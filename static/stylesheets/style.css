@@ -277,13 +277,24 @@ result-section {
     color: #000;
 }
 
-.m {
+.m{
+    text-align: right;
+    top: 10%;
+    position: fixed;
+    padding: 10px;
+    right: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px;
+    
+}
+
+.m a{
     padding: 10px;
     right: 10px;
     backdrop-filter: blur(10px);
     border: 2px;
 }
-.m.hover{
+.m a:hover{
     background-color: #0f0; 
     color: #000; 
     border-color: #0f0; 
