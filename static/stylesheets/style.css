@@ -278,11 +278,8 @@ result-section {
 }
 
 .m{
-    text-align: right;
-    top: 10%;
     position: fixed;
     padding: 10px;
-    right: 10px;
     backdrop-filter: blur(10px);
     border: 2px;
     
