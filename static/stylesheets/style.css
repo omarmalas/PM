@@ -265,6 +265,7 @@ result-section {
     color: #0f0;
     display: inline-block;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    right: 0;
 }
 
 .password-list li a:hover {
