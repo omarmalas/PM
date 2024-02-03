@@ -9,7 +9,6 @@ from termcolor import cprint
 import time
 import hashlib
 
-valid = []
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
